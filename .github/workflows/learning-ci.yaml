@@ -1,0 +1,23 @@
+﻿name: Learning CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  basic-check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Start CI
+        run: echo "My first CI workflow is running!"
+
+      - name: Check project files
+        run: |
+          test -f release/kubernetes-manifests.yaml
+          test -d .github/workflows
+          echo "Project file checks passed."
